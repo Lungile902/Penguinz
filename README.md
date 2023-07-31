@@ -201,5 +201,128 @@ public class MyLinkedList<E>  {
 } // end myLinkedList class
 
 
+/**
+ * Write a description of class StackAsMyLinkeList here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+public class StackAsMyLinkedList<E>
+{
+    MyLinkedList<E> theStack;
+    public StackAsMyLinkedList()
+    {  theStack = new MyLinkedList<E>();       
+    }
+
+    public void push(E newElement) //insert at head
+    {  
+        theStack.prepend(newElement);
+    }
+
+    public E pop() //remove from head
+    {  
+        E temp = null;
+        boolean isDone = false;
+
+        temp = theStack.getFirst();
+        if (temp != null)
+        {
+            isDone=theStack.delete(temp);
+        }
+        if (isDone)
+            return temp;
+        else
+            return null;
+    }
+
+    public String toString()
+    {
+        return theStack.toString();
+    }
+
+}
+
+
+/**
+ * Write a description of class TestMyLinkedList here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+import java.util.Scanner;
+public class TestMyLinkedList
+{
+    public static void main(String []args) throws Exception
+    {
+        Scanner input = new Scanner(System.in);
+        Integer top = null;
+        MyLinkedList<Integer> list = new MyLinkedList<Integer>(); 
+        MyLinkedList<Integer> list2 = new MyLinkedList<Integer>();
+        StackAsMyLinkedList<Integer> myStack = new StackAsMyLinkedList<Integer>();
+
+        //print empty list
+        System.out.println("The list of students, empty list");
+        System.out.println(list);
+
+        //fill the list
+        list.append(new Integer(04));
+        list.append(new Integer(80));
+        list.append(new Integer(45));
+        list.append(new Integer(69));
+        list.append(new Integer(78));
+        list.append(new Integer(35));
+        System.out.println("\nThe list of students");
+        System.out.println(list);
+        
+        //if parameter list is empty
+        System.out.println("\nShow marks that are similar to the second semester marks, parameter list empty");
+        System.out.println(list.merge(list2));
+
+        //swap list adjacent list from second position
+        System.out.println("\nMarks swaped adjacent to position 2");
+        list.swap(2);
+        System.out.println(list);
+
+        //fill second list (second semester marks)
+        list2.append(new Integer(45));
+        list2.append(new Integer(69));
+        list2.append(new Integer(50));
+        list2.append(new Integer(71));
+        list2.append(new Integer(66));
+        
+        //show marks swaped
+        System.out.println("\nShow marks that are similar to the second semester marks");
+        System.out.println(list.merge(list2));
+
+        //clear list
+        list.clear();
+        list2.clear();
+        
+        //if list is empty
+        System.out.println("\nShow marks that are similar to the second semester marks, empty ist");
+        System.out.println(list.merge(list2));
+        
+        //add new elements to the Stack
+        System.out.println("\nNew Students addedd on the stack");
+        myStack.push(new Integer(27));
+        myStack.push(new Integer(94));
+        myStack.push(new Integer(55));
+        System.out.println(myStack +" ");
+
+        System.out.println("\nDo you want to undo the previos action? ");
+        char answer = input.next().charAt(0);
+        if(Character.toUpperCase(answer)=='Y')
+        {
+            top = (Integer) myStack.pop();
+            if (top != null)
+                System.out.println("Top is: " + top.intValue() +"\n");
+            else
+                System.out.println("Empty Stack");
+            System.out.println(myStack +" ");
+        }
+    }
+}
+
+
 This code features data structures that you can use to append, prepend, getlast, swap, and removefirst node to the linked list.
 There is also a stack data structure that you can use to add or reomove items from your list.
